@@ -32,6 +32,7 @@ namespace Delegate_Uebung_06
 
             replace(hello);
 
+
             Func<string, int> remove = delegate (string txt)
             {
                 string newTxt = txt.Replace(" ", "");
@@ -41,7 +42,7 @@ namespace Delegate_Uebung_06
             };
 
             int x = remove(hello);
-            Console.WriteLine(x);
+            Console.WriteLine("Textlänge: " + x);
 
 
             Console.ReadKey();
