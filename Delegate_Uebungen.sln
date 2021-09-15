@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate_Uebung_91_Rechner_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate_Uebung_92_Rechner_Lambda", "Delegate_Uebung_92_Rechner_Lambda\Delegate_Uebung_92_Rechner_Lambda.csproj", "{30BCD655-0201-420F-89B5-466FB98EA690}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate_Uebung_06", "Delegate_Uebung_06\Delegate_Uebung_06.csproj", "{5061931D-0295-4C8F-9121-C52E30785759}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{30BCD655-0201-420F-89B5-466FB98EA690}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30BCD655-0201-420F-89B5-466FB98EA690}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30BCD655-0201-420F-89B5-466FB98EA690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5061931D-0295-4C8F-9121-C52E30785759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5061931D-0295-4C8F-9121-C52E30785759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5061931D-0295-4C8F-9121-C52E30785759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5061931D-0295-4C8F-9121-C52E30785759}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
