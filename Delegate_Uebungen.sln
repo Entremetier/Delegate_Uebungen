@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate_Uebung_07_Minimum"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate_Uebung_08_Vornamen", "Delegate_Uebung_08_Vornamen\Delegate_Uebung_08_Vornamen.csproj", "{FBD30CE3-CDED-4BF5-8B75-42757FB97B19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate_Uebung_09_Studenten", "Delegate_Uebung_09_Studenten\Delegate_Uebung_09_Studenten.csproj", "{7326E9E0-BD28-400D-AC5D-FD4FE6C949DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{FBD30CE3-CDED-4BF5-8B75-42757FB97B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBD30CE3-CDED-4BF5-8B75-42757FB97B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBD30CE3-CDED-4BF5-8B75-42757FB97B19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7326E9E0-BD28-400D-AC5D-FD4FE6C949DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7326E9E0-BD28-400D-AC5D-FD4FE6C949DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7326E9E0-BD28-400D-AC5D-FD4FE6C949DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7326E9E0-BD28-400D-AC5D-FD4FE6C949DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

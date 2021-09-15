@@ -43,18 +43,26 @@ namespace Delegate_Uebung_08_Vornamen
             };
 
             Console.WriteLine("Erster Name der mit \"E\" beginnt ist "  + vornamen.Find(name => name.StartsWith("E")));
+            Console.WriteLine();
 
+
+            Console.WriteLine("Alle Vornamen die mehr als 6 Zeichen lang sind 1:");
             List<string> list = vornamen.FindAll(x => x.Length > 6);
             foreach (var item in list)
             {
                 Console.WriteLine(item);
             }
-
+            Console.WriteLine();
 
             Console.WriteLine("Fangen alle mit einem Großbuchstaben an? " + vornamen.TrueForAll(x => char.IsUpper(x[0])));
             Console.WriteLine();
 
+            Console.WriteLine("Alle Namen mit der foreach-Methode ausgeben:");
             vornamen.ForEach(name => Console.WriteLine(name));
+            Console.WriteLine();
+
+            Console.WriteLine("Alle Vornamen die mehr als 6 Zeichen lang sind 2:");
+            vornamen.FindAll(x => x.Length > 6).ForEach(x => Console.WriteLine(x));
         }
     }
 }
