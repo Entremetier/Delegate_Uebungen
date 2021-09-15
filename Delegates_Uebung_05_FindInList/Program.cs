@@ -51,36 +51,26 @@ namespace Delegates_Uebung_05_FindInList
             Console.WriteLine();
 
 
-            Predicate<int> predicate = GroesserFuenfzig;
-
-            int c = liste.Find(predicate);
-            Console.WriteLine("Erster Wert der größer als 50 ist: " + c);
+            Console.WriteLine("Erster Wert der größer als 50 ist: " + liste.Find(GroesserFuenfzig));
             Console.WriteLine();
 
-            c = liste.FindLast(predicate);
-            Console.WriteLine("Letzter Wert der größer als 50 ist: " + c);
+            Console.WriteLine("Letzter Wert der größer als 50 ist: " + liste.FindLast(GroesserFuenfzig));
             Console.WriteLine();
 
-            predicate = KleinerZwanzig;
-
-            c = liste.FindIndex(predicate);
-            Console.WriteLine("Index des ersten Wertes der kleiner als 20 ist: " + c);
+            Console.WriteLine("Index des ersten Wertes der kleiner als 20 ist: " + liste.FindIndex(KleinerZwanzig));
             Console.WriteLine();
 
-            c = liste.FindLastIndex(predicate);
-            Console.WriteLine("Index des letzten Wertes der kleiner als 20 ist: " + c);
+            Console.WriteLine("Index des letzten Wertes der kleiner als 20 ist: " + liste.FindLastIndex(KleinerZwanzig));
             Console.WriteLine();
 
-            predicate = GroesserFuenfzig;
 
-            liste.RemoveAll(predicate);
+            liste.RemoveAll(GroesserFuenfzig);
             Console.WriteLine("Liste ohne Werte die größer als 50 sind");
             ListeAusgeben(liste);
             Console.WriteLine();
 
-            predicate = KleinerZwanzig;
 
-            liste.RemoveAll(predicate);
+            liste.RemoveAll(KleinerZwanzig);
             Console.WriteLine("Liste ohne Werte die kleiner als 20 sind");
             ListeAusgeben(liste);
             Console.WriteLine();
