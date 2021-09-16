@@ -46,23 +46,42 @@ namespace Delegate_Uebung_08_Vornamen
             Console.WriteLine();
 
 
+            Predicate<string> startsWithEFinder = x => x[0] == 'E';
+            Console.WriteLine($"Beginnt Edi mit E? {startsWithEFinder("Edi")}");
+            Console.WriteLine($"Beginnt Ali mit E? {startsWithEFinder("Ali")}");
+            Console.WriteLine();
+
+
             Console.WriteLine("Alle Vornamen die mehr als 6 Zeichen lang sind 1:");
             List<string> list = vornamen.FindAll(x => x.Length > 6);
             foreach (var item in list)
             {
                 Console.WriteLine(item);
             }
+
             Console.WriteLine();
+            Console.WriteLine("Alle Vornamen die mehr als 6 Zeichen lang sind 1 (mit Join):");
+            Console.WriteLine(string.Join(" | ", list));
+            Console.WriteLine();
+
 
             Console.WriteLine("Fangen alle mit einem Großbuchstaben an? " + vornamen.TrueForAll(x => char.IsUpper(x[0])));
             Console.WriteLine();
+
 
             Console.WriteLine("Alle Namen mit der foreach-Methode ausgeben:");
             vornamen.ForEach(name => Console.WriteLine(name));
             Console.WriteLine();
 
+
+            Console.WriteLine("Alle Namen Großgeschrieben ausgeben");
+            vornamen.ForEach(x => Console.WriteLine(x.ToUpper()));
+            Console.WriteLine();
+
+
             Console.WriteLine("Alle Vornamen die mehr als 6 Zeichen lang sind 2:");
-            vornamen.FindAll(x => x.Length > 6).ForEach(x => Console.WriteLine(x));
+            vornamen.FindAll(x => x.Length > 6)
+                .ForEach(x => Console.WriteLine(x));
         }
     }
 }

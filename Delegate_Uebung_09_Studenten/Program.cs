@@ -38,36 +38,61 @@ namespace Delegate_Uebung_09_Studenten
     {
         static void Main(string[] args)
         {
-            var currentYear = DateTime.Now.Date.Year;
+            //var currentYear = DateTime.Now.Date.Year;
 
             List<Student> students = new List<Student>
             {
-                new Student("Ida", "Meier", Land.Österreich, Geschlecht.weiblich, new DateTime(2002, 09, 28), "Jus"),
-                new Student("Leo", "Werner", Land.Österreich, Geschlecht.männlich, new DateTime(2000, 03, 22), "Architektur"),
-                new Student("Ali", "Hofer", Land.Österreich, Geschlecht.männlich, new DateTime(2001, 05, 07), "Raumplanung"),
-                new Student("Bea", "Ebner", Land.Deutschland, Geschlecht.weiblich, new DateTime(2004, 01, 03), "Informatik"),
-                new Student("Zoe", "Böhm", Land.Österreich, Geschlecht.weiblich, new DateTime(1999, 10, 16), "Soziologie"),
-                new Student("Jan", "Eder", Land.Österreich, Geschlecht.männlich, new DateTime(2002, 08, 11), "Biologie"),
-                new Student("Ken", "Wolf", Land.Schweiz, Geschlecht.männlich, new DateTime(2003, 06, 04), "Informatik"),
-                new Student("Eva", "Fuchs", Land.Österreich, Geschlecht.weiblich, new DateTime(2003, 09, 09), "Mathematik"),
-                new Student("Max", "Huber", Land.Österreich, Geschlecht.männlich, new DateTime(2001, 07, 24), "Informatik"),
-                new Student("Ben", "Egger", Land.Deutschland, Geschlecht.männlich, new DateTime(2002, 02, 12), "Statistik"),
+                new Student("Ida", "Meier", Land.Österreich, Geschlecht.weiblich, DateTime.Parse("28.09.2002"), "Jus"),
+                new Student("Leo", "Werner", Land.Österreich, Geschlecht.männlich, DateTime.Parse("22.03.2000"), "Architektur"),
+                new Student("Ali", "Hofer", Land.Österreich, Geschlecht.männlich, DateTime.Parse("07.05.2001"), "Raumplanung"),
+                new Student("Bea", "Ebner", Land.Deutschland, Geschlecht.weiblich, DateTime.Parse("03.01.2004"), "Informatik"),
+                new Student("Zoe", "Böhm", Land.Österreich, Geschlecht.weiblich, DateTime.Parse("16.10.1999"), "Soziologie"),
+                new Student("Jan", "Eder", Land.Österreich, Geschlecht.männlich, DateTime.Parse("11.08.2002"), "Biologie"),
+                new Student("Ken", "Wolf", Land.Schweiz, Geschlecht.männlich, DateTime.Parse("04.06.2003"), "Informatik"),
+                new Student("Eva", "Fuchs", Land.Österreich, Geschlecht.weiblich, DateTime.Parse("09.09.2003"), "Mathematik"),
+                new Student("Max", "Huber", Land.Österreich, Geschlecht.männlich, DateTime.Parse("24.07.2001"), "Informatik"),
+                new Student("Ben", "Egger", Land.Deutschland, Geschlecht.männlich, DateTime.Parse("12.02.2002"), "Statistik"),
             };
 
             Console.WriteLine("Alle Studenten aus Österreich:");
-            students.FindAll(x => x.Land.Equals("Österreich")).ForEach(x => Console.WriteLine(x));
+            students.FindAll(x => x.Land.Equals(Land.Österreich))
+                .ForEach(x => Console.WriteLine(x));
             Console.WriteLine();
+
 
             Console.WriteLine("Alle Studentinnen:");
-            students.FindAll(x => x.Geschlecht.Equals(Geschlecht.weiblich)).ForEach(x => Console.WriteLine(x));
+            students.FindAll(x => x.Geschlecht.Equals(Geschlecht.weiblich))
+                .ForEach(x => Console.WriteLine(x));
             Console.WriteLine();
 
-            Console.WriteLine("Alle Studenten mit Fachrichtung Informatik und älter als 20 Jahre:");
-            students.FindAll(x => x.Studienrichtung.Equals("Informatik")).FindAll(x => (currentYear - x.Geburtstag.Year) > 20).ForEach(x => Console.WriteLine(x));
+
+            Console.WriteLine("Alle Studenten mit Fachrichtung Informatik:");
+            students.FindAll(x => x.Studienrichtung.Equals("Informatik"))
+                .ForEach(x => Console.WriteLine(x));
             Console.WriteLine();
+
+
+            Console.WriteLine("Alle Studenten mit Fachrichtung Informatik und älter als 20 Jahre (Version 1):");
+            List<Student> inf20PlusStuds = students.FindAll(st => st.Studienrichtung == "Informatik" && st.Alter >= 20);
+            Console.WriteLine(string.Join("\n", inf20PlusStuds));
+            Console.WriteLine();
+
+            //ODER
+
+            Console.WriteLine("Alle Studenten mit Fachrichtung Informatik und älter als 20 Jahre (Version 2):");
+            students.FindAll(x => x.Studienrichtung.Equals("Informatik") && x.Alter >= 20)
+                .ForEach(x => Console.WriteLine(x));
+
+            Console.WriteLine();
+
 
             Console.WriteLine("Alle Studenten aus Österreich die vor dem 01.01.2002 geboren wurden:");
-            students.FindAll(x => x.Land.Equals("Österreich")).FindAll(x => x.Geburtstag < new DateTime(2002, 01, 01)).ForEach(x => Console.WriteLine(x));
+            //List<Student> gebStuds = students.FindAll(st => st.Land == Land.Österreich && st.Geburtstag < DateTime.Parse("01.01.2002"));
+            //Console.WriteLine(string.Join("\n", gebStuds));
+
+
+            students.FindAll(x => x.Land.Equals(Land.Österreich) && x.Geburtstag < DateTime.Parse("01.01.2002"))
+                .ForEach(x => Console.WriteLine(x));
 
 
             Console.ReadKey();
@@ -76,34 +101,56 @@ namespace Delegate_Uebung_09_Studenten
 
     internal class Student
     {
+        private static int nextId = 0;
+        private int ID { get; }
         public string Vorname { get; set; }
         public string Nachname { get; set; }
         public Land Land { get; set; }
         public Geschlecht Geschlecht { get; set; }
         public DateTime Geburtstag { get; set; }
         public string Studienrichtung { get; set; }
+        public int Alter
+        {
+            get
+            {
+                //Lösung von StackOverflow
+                //https://stackoverflow.com/questions/9/how-do-i-calculate-someones-age-based-on-a-datetime-type-birthday
+
+                // Save today's date.
+                DateTime today = DateTime.Today;
+
+                // Calculate the age.
+                int age = today.Year - Geburtstag.Year;
+
+                // Go back to the year in which the person was born in case of a leap year
+                if (Geburtstag.Date > today.AddYears(-age)) age--;
+
+                return age;
+            }
+        }
 
         public Student(string vorname, string nachname, Land land, Geschlecht geschlecht,
             DateTime geburtstag, string studienrichtung)
         {
+            ID = ++nextId;
             Vorname = vorname;
             Nachname = nachname;
             Land = land;
             Geschlecht = geschlecht;
-            Geburtstag = geburtstag;
+            Geburtstag = geburtstag.Date;
             Studienrichtung = studienrichtung;
         }
 
         public override string ToString()
         {
-            return $"{{{nameof(Vorname)}={Vorname}, {nameof(Nachname)}={Nachname}, {nameof(Land)}={Land}, {nameof(Geschlecht)}={Geschlecht}, " +
+            return $"{{{nameof(ID)}={ID}, {nameof(Vorname)}={Vorname}, {nameof(Nachname)}={Nachname}, {nameof(Land)}={Land}, {nameof(Geschlecht)}={Geschlecht}, " +
                 $"{nameof(Geburtstag)}={Geburtstag.ToShortDateString()}, {nameof(Studienrichtung)}={Studienrichtung}}}";
         }
     }
 
     public enum Geschlecht
     {
-        weiblich, männlich
+        weiblich, männlich, divers
     }
 
     public enum Land
